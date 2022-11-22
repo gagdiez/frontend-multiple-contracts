@@ -100,31 +100,6 @@ export class Wallet {
     });
   }
 
-  /**
-   * Perform multiple methods call.
-   * @param {Call[]} array_call An array of calls
-   */
-  async batchMethodCalls(array_call) {
-    let transactions = []
-
-    for (var arr_idx in array_call) {
-      let { contractId, method_calls } = array_call[arr_idx]
-      let tx = { receiverId: contractId, actions: [] }
-
-      for (var fc_idx in method_calls) {
-        let { method, args, gas, deposit } = method_calls[fc_idx]
-        gas = gas || THIRTY_TGAS
-        deposit = deposit || NO_DEPOSIT
-        let action = { type: 'FunctionCall', params: { methodName: method, args, gas, deposit } }
-        tx.actions.push(action)
-      }
-
-      transactions.push(tx)
-    }
-
-    return await this.wallet.signAndSendTransactions({ transactions });
-  }
-
   // Get transaction result from the network
   async getTransactionResult(txhash) {
     const { network } = this.walletSelector.options;
@@ -134,9 +109,7 @@ export class Wallet {
     const transaction = await provider.txStatus(txhash, 'unnused');
     return providers.getTransactionLastResult(transaction);
   }
-}
 
-class Call {
-  contractId;
-  method_calls;
+  // Batch transactions
+  signAndSendTransactions(transactions){ this.wallet.signAndSendTransactions(transactions) }
 }

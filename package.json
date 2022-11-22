@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html --public-url ./"
+    "start": "cd frontend && parcel index.html --open",
+    "build": "cd frontend && parcel build index.html --public-url ./"
   },
   "devDependencies": {
     "buffer": "^5.7.1",
