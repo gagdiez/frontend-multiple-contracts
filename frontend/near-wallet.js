@@ -110,6 +110,6 @@ export class Wallet {
     return providers.getTransactionLastResult(transaction);
   }
 
-  // Batch transactions
+  // Send multiple transactions
   signAndSendTransactions(transactions){ this.wallet.signAndSendTransactions(transactions) }
 }
