@@ -36,7 +36,6 @@ const guestTx = {
 const helloTx = {
   receiverId: HELLO_ADDRESS,
   actions: [
-    // You can batch actions against a contract: If any fails, they ALL get reverted 
     {
       type: 'FunctionCall',
       params: {
@@ -47,7 +46,7 @@ const helloTx = {
   ]
 }
 
-// Ask the user to sign **independent** transactions
+// Ask the user to sign the **independent** transactions
 await wallet.signAndSendTransactions({ transactions: [ helloTx, guestTx ] })
 ```
 
